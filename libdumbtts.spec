@@ -6,6 +6,7 @@ Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.tts.polip.com/files/%{name}-%{version}.tar.gz
+
 %description
 libdumbtts is helper library for dumb speech synthesizer drivers.
 Developed for Ivona synthesizer and speech-dispatcher, but may be
@@ -34,16 +35,16 @@ Pliki nagłówkowe biblioteki libdumbtts.
 %setup -q
 
 %build
-
 cd src
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/dumbtts
+
 cd src
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/dumbtts
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,5 +64,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc README*
 %attr(755,root,root) %{_libdir}/libdumbtts.so
 %attr(755,root,root) %{_libdir}/libdumbtts.so.0
-
 %{_includedir}/*
