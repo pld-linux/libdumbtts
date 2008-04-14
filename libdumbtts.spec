@@ -6,6 +6,8 @@ Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.tts.polip.com/files/%{name}-%{version}.tar.gz
+# Source0-md5:	39f1e4abf31578346ece9ebd0ec3a6b7
+BuildRoot:	 %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 libdumbtts is helper library for dumb speech synthesizer drivers.
@@ -35,15 +37,13 @@ Pliki nagłówkowe biblioteki libdumbtts.
 %setup -q
 
 %build
-cd src
-%{__make}
+%{__make} -C src
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/dumbtts
 
-cd src
-%{__make} install \
+%{__make} -C src install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
