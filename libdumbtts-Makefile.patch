@@ -1,0 +1,26 @@
+--- libdumbtts-0.2.0/src/Makefile~	2008-04-15 20:16:56.000000000 +0200
++++ libdumbtts-0.2.0/src/Makefile	2008-04-15 20:19:02.000000000 +0200
+@@ -10,9 +10,8 @@
+ INSTALL = /usr/bin/install
+ LN_SF = /bin/ln -sf
+ MKDIR = mkdir -p
+-C = gcc
+ PIC =
+-ARCU = $(shell uname -m)
++ARCH = $(shell uname -m)
+ 
+ ifeq "$(ARCH)" "x86_64"
+ 	PIC = -fPIC
+@@ -25,10 +24,10 @@
+ 	mv $(LIB_NAME) $(LIB_NAME).$(LIBTAG)
+ 
+ $(OBJS):
+-	$(C) -o $(OBJS) -c -Wall libdumbtts.c
++	$(CC) $(CFLAGS) -o $(OBJS) -c -Wall libdumbtts.c
+ 
+ $(LIB_NAME): $(OBJS)
+-	$(C) $(PIC) -shared -Wl,-soname,$(LIB_NAME).$(LIB_VERSION) -o $@ $(OBJS)
++	$(CC) $(PIC) $(LDFLAGS) -shared -Wl,-soname,$(LIB_NAME).$(LIB_VERSION) -o $@ $(OBJS)
+ 
+ clean:
+ 	rm -f *.o *.a *~ $(LIB_NAME).$(LIBTAG)
