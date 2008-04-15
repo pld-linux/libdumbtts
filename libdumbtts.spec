@@ -1,13 +1,13 @@
 Summary:	Helper library for dumb speech synthesizers
 Summary(pl.UTF-8):	Biblioteka pomocnicza dla głupich syntezatorów mowy
 Name:		libdumbtts
-Version:	0.1.1
+Version:	0.2.0
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.tts.polip.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	39f1e4abf31578346ece9ebd0ec3a6b7
-BuildRoot:	 %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+# Source0-md5:	ed9d9aadcd5f0bb399c040b27b8cb9b0
+Patch0:		%{name}-Makefile.patch
 
 %description
 libdumbtts is helper library for dumb speech synthesizer drivers.
@@ -35,15 +35,20 @@ Pliki nagłówkowe biblioteki libdumbtts.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%{__make} -C src
+%{__make} -C src \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"\
+	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/dumbtts
 
-%{__make} -C src install \
+cd src
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
