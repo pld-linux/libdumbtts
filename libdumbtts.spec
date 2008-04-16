@@ -47,8 +47,7 @@ Pliki nagłówkowe biblioteki libdumbtts.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/dumbtts
 
-cd src
-%{__make} install \
+%{__make} -C src install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -68,5 +67,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README*
 %attr(755,root,root) %{_libdir}/libdumbtts.so
-%attr(755,root,root) %{_libdir}/libdumbtts.so.0
 %{_includedir}/*
