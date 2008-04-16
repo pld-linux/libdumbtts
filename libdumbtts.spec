@@ -1,5 +1,3 @@
-# TODO:
-# - doesn't build on x86_64
 Summary:	Helper library for dumb speech synthesizers
 Summary(pl.UTF-8):	Biblioteka pomocnicza dla głupich syntezatorów mowy
 Name:		libdumbtts
@@ -43,7 +41,7 @@ Pliki nagłówkowe biblioteki libdumbtts.
 %build
 %{__make} -C src \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"\
+	CFLAGS="%{rpmcflags} -fPIC" \
 	LDFLAGS="%{rpmldflags}"
 
 %install
