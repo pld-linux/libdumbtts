@@ -1,3 +1,5 @@
+# TODO:
+# - doesn't build on x86_64
 Summary:	Helper library for dumb speech synthesizers
 Summary(pl.UTF-8):	Biblioteka pomocnicza dla głupich syntezatorów mowy
 Name:		libdumbtts
@@ -8,6 +10,7 @@ Group:		Libraries
 Source0:	http://www.tts.polip.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	ed9d9aadcd5f0bb399c040b27b8cb9b0
 Patch0:		%{name}-Makefile.patch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 libdumbtts is helper library for dumb speech synthesizer drivers.
@@ -48,7 +51,11 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/dumbtts
 
 %{__make} -C src install \
+	LIBDIR=%{_libdir} \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# Propably junk - removing
+rm -rf $RPM_BUILD_ROOT%{_datadir}/dumbtts/pl.conf~
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -58,13 +65,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc README
+%doc %lang(pl) README_pl
 %attr(755,root,root) %{_libdir}/libdumbtts.so.*.*.*
+%ghost %attr(755,root,root) %{_libdir}/libdumbtts.so.?
 %dir %{_datadir}/dumbtts
 %dir %{_sysconfdir}/dumbtts
 %{_datadir}/dumbtts/*.conf
 
 %files devel
 %defattr(644,root,root,755)
-%doc README*
 %attr(755,root,root) %{_libdir}/libdumbtts.so
 %{_includedir}/*
