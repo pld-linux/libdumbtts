@@ -1,12 +1,12 @@
 Summary:	Helper library for dumb speech synthesizers
 Summary(pl.UTF-8):	Biblioteka pomocnicza dla głupich syntezatorów mowy
 Name:		libdumbtts
-Version:	0.2.0
+Version:	0.3.0
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.tts.polip.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	ed9d9aadcd5f0bb399c040b27b8cb9b0
+# Source0-md5:	7eff56583b94837c89f38cc5cb05a0b5
 Patch0:		%{name}-Makefile.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
