@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %doc %lang(pl) README_pl
 %attr(755,root,root) %{_libdir}/libdumbtts.so.*.*.*
-%ghost %attr(755,root,root) %{_libdir}/libdumbtts.so.?
+%attr(755,root,root) %ghost %{_libdir}/libdumbtts.so.?
 %dir %{_datadir}/dumbtts
 %dir %{_sysconfdir}/dumbtts
 %{_datadir}/dumbtts/*.conf
