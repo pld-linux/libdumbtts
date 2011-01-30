@@ -26,7 +26,6 @@ Summary:	Header files for libdumbtts library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libdumbtts
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description devel
 Header files for libdumbtts library.
