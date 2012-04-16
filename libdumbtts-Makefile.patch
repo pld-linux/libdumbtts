@@ -1,5 +1,5 @@
---- libdumbtts-0.3.0/src/Makefile.orig	2009-06-09 13:02:34.928031378 +0200
-+++ libdumbtts-0.3.0/src/Makefile	2009-06-09 13:04:34.642090709 +0200
+--- libdumbtts-0.3.2/src/Makefile.orig	2010-06-22 09:02:38.000000000 +0200
++++ libdumbtts-0.3.2/src/Makefile	2012-04-15 21:14:06.279134786 +0200
 @@ -10,7 +10,6 @@
  INSTALL = /usr/bin/install
  LN_SF = /bin/ln -sf
@@ -12,12 +12,12 @@
  	mv $(LIB_NAME) $(LIB_NAME).$(LIBTAG)
  
  $(OBJS): $(SRCS)
--	$(C) -o $(OBJS) -c -Wall libdumbtts.c
-+	$(CC) $(CFLAGS) -o $(OBJS) -c -Wall libdumbtts.c
+-	$(C) $(PIC) -o $(OBJS) -c -Wall libdumbtts.c
++	$(CC) $(PIC) $(CFLAGS) -o $(OBJS) -c -Wall libdumbtts.c
  
  $(LIB_NAME): $(OBJS)
 -	$(C) $(PIC) -shared -Wl,-soname,$(LIB_NAME).$(LIB_VERSION) -o $@ $(OBJS)
-+	$(CC) $(PIC) $(LDFLAGS) -shared -Wl,-soname,$(LIB_NAME).$(LIB_VERSION) -o $@ $(OBJS)
++	$(CC) $(PIC) $(CFLAGS) $(LDFLAGS) -shared -Wl,-soname,$(LIB_NAME).$(LIB_VERSION) -o $@ $(OBJS)
  
  clean:
  	rm -f *.o *.a *~ $(LIB_NAME).$(LIBTAG) ../conf/*~
