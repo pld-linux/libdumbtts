@@ -5,7 +5,7 @@ Version:	0.3.2
 Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://tts.polip.com/files/%{name}-%{version}.tar.gz
+Source0:	http://www.polip.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	4bacd89c0c9bb178dcd8758c6e9ca90d
 Patch0:		%{name}-Makefile.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
