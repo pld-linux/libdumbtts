@@ -2,10 +2,10 @@ Summary:	Helper library for dumb speech synthesizers
 Summary(pl.UTF-8):	Biblioteka pomocnicza dla "głupich" syntezatorów mowy
 Name:		libdumbtts
 Version:	0.3.2
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://www.polip.com/files/%{name}-%{version}.tar.gz
+Source0:	https://www.polip.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	4bacd89c0c9bb178dcd8758c6e9ca90d
 Patch0:		%{name}-Makefile.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -40,7 +40,7 @@ Pliki nagłówkowe biblioteki libdumbtts.
 %build
 %{__make} -C src \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}" \
+	CFLAGS="%{rpmcflags} -std=gnu89" \
 	LDFLAGS="%{rpmldflags}" \
 	PIC="-fPIC"
 
